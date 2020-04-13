@@ -1,3 +1,4 @@
+/* Muti step form */
 $(function(){
     $("#wizard").steps({
         headerTag: "h4",
@@ -19,11 +20,13 @@ $(function(){
     // Custom Button Jquery Steps
     $('.forward').click(function(){
         $("#wizard").steps('next');
-    })
+    });
     $('.backward').click(function(){
         $("#wizard").steps('previous');
-    })
-})
+    });
+});
+
+/* Searchable dropdown */
 $(function () {
   $('#underlyings').each(function () {
     $(this).select2({
@@ -34,3 +37,27 @@ $(function () {
     });
   });
 });
+
+/* Review section */
+const optionNotional = document.getElementById('optionNotional');
+const numberOfOptions = document.getElementById('numberOfOptions');
+const reviewNotionalPerOption = document.getElementById('reviewNotionalPerOption');
+const reviewNumberofOptions = document.getElementById('reviewNumberofOptions');
+const reviewNotionalTotal = document.getElementById('reviewNotionalTotal');
+
+optionNotional.onchange = function() {
+    reviewNotionalPerOption.innerHTML = optionNotional.value;
+    reviewNotionalTotal.innerHTML = calcNotionalTotal();
+};
+
+numberOfOptions.onchange = function() {
+    reviewNumberofOptions.innerHTML = numberOfOptions.value;
+    reviewNotionalTotal.innerHTML = calcNotionalTotal();
+};
+
+function calcNotionalTotal() {
+    if (optionNotional.value && numberOfOptions.value) {
+        let notionalTotal = parseFloat(optionNotional.value) * parseFloat(numberOfOptions.value);
+        return notionalTotal.toString()
+    }
+}

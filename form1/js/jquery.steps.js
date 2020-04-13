@@ -990,29 +990,30 @@ function removeStepFromCache(wizard, index)
  * @param options {Object} Settings of the current wizard
  * @param state {Object} The state container of the current wizard
  **/
-function render(wizard, options, state)
-{
+function render(wizard, options, state) {
     // Create a content wrapper and copy HTML from the intial wizard structure
-    var wrapperTemplate = "<{0} class=\"{1}\">{2}</{0}>",
+    var contentWrapperTemplate = "<{0} class=\"{1}\"></{0}>",
+        stepsWrapperTemplate = "<{0} class=\"{1}\">{2}</{0}>",
         orientation = getValidEnumValue(stepsOrientation, options.stepsOrientation),
         verticalCssClass = (orientation === stepsOrientation.vertical) ? " vertical" : "",
-        contentWrapper = $(wrapperTemplate.format(options.contentContainerTag, "content " + options.clearFixCssClass, wizard.html())),
-        stepsWrapper = $(wrapperTemplate.format(options.stepsContainerTag, "steps " + options.clearFixCssClass, "<ul role=\"tablist\"></ul>")),
-        stepTitles = contentWrapper.children(options.headerTag),
-        stepContents = contentWrapper.children(options.bodyTag);
+        contentWrapper = $(contentWrapperTemplate.format(options.contentContainerTag, "content " + options.clearFixCssClass)),
+        stepsWrapper = $(stepsWrapperTemplate.format(options.stepsContainerTag, "steps " + options.clearFixCssClass, "<ul role=\"tablist\"></ul>"));
 
-    // Transform the wizard wrapper and remove the inner HTML
-    wizard.attr("role", "application").empty().append(stepsWrapper).append(contentWrapper)
+    // Transform the wizard wrapper by wrapping the innerHTML in the content wrapper, then prepending the stepsWrapper
+    wizard.attr("role", "application").wrapInner(contentWrapper).prepend(stepsWrapper)
         .addClass(options.cssClass + " " + options.clearFixCssClass + verticalCssClass);
 
+    //Now that wizard is tansformed, select the the title and contents elements
+    var populatedContent = wizard.find('.content'),
+        stepTitles = populatedContent.children(options.headerTag),
+        stepContents = populatedContent.children(options.bodyTag);
+
     // Add WIA-ARIA support
-    stepContents.each(function (index)
-    {
+    stepContents.each(function (index) {
         renderBody(wizard, state, $(this), index);
     });
 
-    stepTitles.each(function (index)
-    {
+    stepTitles.each(function (index) {
         renderTitle(wizard, options, state, $(this), index);
     });
 

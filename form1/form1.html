@@ -70,7 +70,7 @@
                 </div>
                 <div class="form-group">
                     <label for="optionNotional">Notional per Option</label>
-                    <input type="number" min=0 class="form-control" id="optionNotional">
+                    <input type="text" min=0 class="form-control" id="optionNotional" name="optionNotional">
                 </div>
                 <div class="form-group">
                     <label for="expiryDate">Expiry Date</label>
@@ -170,7 +170,7 @@
                 </div>
                 <div class="form-group">
                     <label for="numberOfOptions">Number of Options</label>
-                    <input type="number" class="form-control" id="numberOfOptions">
+                    <input type="number" class="form-control" id="numberOfOptions" name="numberOfOptions">
                 </div>
                 <hr/>
                 <h5 class="form-title">Premium Data</h5>
@@ -198,6 +198,12 @@
             </h4>
             <section>
                 <h3 class="form-title">Review</h1>
+                <h5 class="form-title">Option</h5>
+                <p>Notional per Option: <span id="reviewNotionalPerOption"></span></p>
+                <p>Number of Options: <span id="reviewNumberofOptions"></span></p>
+                <p>Notional Total: <span id="reviewNotionalTotal"></span></p>
+                <hr/>
+                <h5 class="form-title">Trade</h5>
             </section>
         </form>
     </div>
@@ -209,7 +215,7 @@
     <script src="js/jquery.steps.js"></script>
     <!-- Select2 JS -->
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-    <!-- Custom JS -->
+        <!-- Custom JS -->
     <script src="js/form1.js"></script>
 </body>
 </html>
