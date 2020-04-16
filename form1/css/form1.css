@@ -11,33 +11,11 @@ ul {
   margin: 0;
   list-style: none; }
 
-a {
+a, a:hover {
   text-decoration: none; }
-
-a:hover {
-  text-decoration: none; }
-
-textarea {
-  resize: none; }
-
-img {
-  max-width: 100%;
-  vertical-align: middle; }
-
-h4 > span {
-  display:none;
-}
 
 .content {
   margin-top: 60px;
-}
-
-.step-name {
-  position: relative;
-  text-decoration: none;
-  color: #5f07eacf;
-  top: 40px;
-  text-align: center;
 }
 
 .wizard {
@@ -51,42 +29,85 @@ h4 > span {
         0 1px 5px 0 rgba(0,0,0,.084);
 }
 
+.navbar-separator {
+  margin-top: 0px;
+  margin-bottom: 30px;
+  margin-left: -50px;
+  margin-right: -50px;
+}
+
 .wizard > .steps {
   position: relative;
 }
 
 .wizard > .steps .current-info, .wizard > .steps .number {
-  display: none; }
+  display: none;
+}
 
-.wizard > .steps ul {
-  display: flex;
-  justify-content: center; }
+.wizard > .steps li {
+  width: 33.33%;
+  display: inline-block;
+  text-align: center;
+}
 
 .wizard > .steps li a {
   display: inline-block;
   width: 35px;
   height: 35px;
   border-radius: 50%;
-  background: #e9e0cf;
-  margin-right: 150px;
-  position: relative; }
-  .wizard > .steps li a:before {
-    content: "";
-    width: 140px;
-    height: 3px;
-    background: #e9e0cf;
-    position: absolute;
-    right: 40px;
-    top: 15px; }
-  .wizard > .steps li a:after {
-    content: "";
-    width: 0;
-    height: 3px;
-    background: #5f07eacf;
-    position: absolute;
-    left: -144px;
-    top: 15px;
-    transition: all 0.6s ease; }
+  background: #d0d0d0;
+}
+
+.wizard > .steps li:first-child a:before {
+  content: "1";
+  position: relative;
+  top: 6px;
+  color: #fff;
+}
+
+.wizard > .steps li:nth-child(2) a:before {
+  content: "2";
+  position: relative;
+  top: 6px;
+  color: #fff;
+}
+
+.wizard > .steps li:last-child a:before {
+  content: "3";
+  position: relative;
+  top: 6px;
+  color: #fff;
+}
+
+.wizard > .steps li.current a:after {
+  font-weight: bold;
+}
+
+.wizard > .steps li:first-child a:after {
+  content: "Option";
+  position: relative;
+  top: 20px;
+  left: -5px;
+  text-align: center;
+  color: #000;
+}
+
+.wizard > .steps li:nth-child(2) a:after {
+  content: "Trade";
+  position: relative;
+  top: 20px;
+  left: -3px;
+  color: #000;
+}
+
+.wizard > .steps li:last-child a:after {
+  content: "Review";
+  position: relative;
+  top: 20px;
+  left: -7px;
+  color: #000;
+}
+
 .wizard > .steps li.first a {
   background: #5f07eacf; }
 .wizard > .steps li.checked a {
@@ -95,10 +116,6 @@ h4 > span {
     width: 140px; }
 .wizard > .steps li:last-child a {
   margin-right: 0; }
-.wizard > .steps li:first-child a:before {
-  display: none; }
-.wizard > .steps li:first-child a:after {
-  display: none; }
 
 .form-row {
   display: flex;
